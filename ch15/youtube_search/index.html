@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>YouTube JSON API : Display by Keyword Search</title>
+    <style>
+		img {
+			width: 200px;
+		}
+	</style>
+	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+	<script>
+		$.support.cors = true;		
+		$(document).ready(function(){
+			// Handle the search button's click event
+			$("#btnSearch").click(function() {
+				// Reset the div element in case a second search is made
+				$("#youtube").html("");
+				// Set the search term
+				var searchTerm = "";
+				if (!$("#search").val() == "") {
+					searchTerm = $("#search").val();
+				} else { // If it is empty, alert the user
+					alert("You must enter a search term!");
+				}
+				// Build the custom YouTube URL based on the search term and number of videos
+				var url = "http://gdata.youtube.com/feeds/api/videos?vq=" + searchTerm + "&max-results=5&orderby=published&alt=json";
+	
+				$.getJSON(url, function(data) {
+					// Loop through each feed entry
+					$.each(data.feed.entry, function(i,item) {
+						// Get the URL for the video
+						var url = item.link[0].href;
+						// Get the title of the video
+						var title = item.title.$t;
+						// Get the first 10 characters of date video was published or: YYYY-MM-DD
+						var datepublished = item.published.$t.substring(0, 10);
+						// Get the author name
+						var author = item.author[0].name.$t;
+						// Construct the display for the video
+						var text = 					
+							"<br><a href='" + url + "'>" + title + "</a><br>" +
+							"Published: " + datepublished + " by " + author + "<br>";
+						// Append the text string to the div for display
+						$("#youtube").append(text);
+					});
+				});
+			});
+		});
+	</script>
+</head>
+	
+<body>
+    Search by keyword: <input type="text" size="30" id="search">
+    <input type="button" value="Search" id="btnSearch">
+    
+	<div id="youtube"></div>
+</body>
+</html>

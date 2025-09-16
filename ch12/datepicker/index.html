@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Datepicker</title>
+    <!-- jQuery UI style sheet reference. Smoothness is the theme used. -->
+    <link href="css/smoothness/jquery-ui-1.8.23.custom.css" type="text/css" rel="stylesheet">
+	<!-- Normal style sheet used for layout and general formatting. -->
+    <link href="styles.css" type="text/css" rel="stylesheet">
+    <!-- HTML5 shim/shiv for HTML5 section element backward compatibility. -->
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <!-- jQuery library reference. Latest is always referenced from jQuery's CDN. -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <!-- jQuery UI JavaScript library reference. -->
+    <script type="text/javascript" src="js/jquery-ui-1.8.23.custom.min.js"></script>
+    <!-- jQuery call to the autocomplete() method. An array of items is passed in as a parameter. -->
+	<script>
+        $(document).ready(function() {
+        	$("#datepicker").datepicker();
+		});
+       </script>
+</head>
+	
+<body>
+	<section>
+        <form id="request_form" name="request_form" action="response.html" method="get">		
+			<h1>Royal Inn and Suites</h1>
+			<!-- Code for datepicker widget -->        
+			<label>Arrival date:</label>
+			<label class="nofloat"><input type="text" id="datepicker"></label><br>
+        	<!-- End code for datepicker widget -->
+        	<label>Nights:</label>
+        	<input type="text" id="nights"><br>
+        	<label>Guests:</label>
+        	<input type="text" id="guests"><br><br>
+        	<label>Name:</label>
+        	<input type="text" id="name"><br>
+        	<label>Email:</label>
+        	<input type="text" id="email"><br><br>
+        	<label>&nbsp;</label>
+        	<input type="submit" id="request" name="request" value="Submit Request">
+        </form>
+	</section>
+</body>
+</html>
